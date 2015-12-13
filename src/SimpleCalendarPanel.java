@@ -6,8 +6,18 @@ import javax.swing.*;
  */
 public class SimpleCalendarPanel extends JPanel {
 
-    public SimpleCalendarPanel(){
+    private JButton next;
+    private JButton previous;
+    private JLabel month;
 
+    public SimpleCalendarPanel(String month){
+
+        this.month = new JLabel(month);
+        this.previous = new JButton("Previous");
+        this.next = new JButton("Next");
+        add(this.previous);
+        add(this.month);
+        add(this.next);
     }
 
 }

@@ -8,6 +8,7 @@ import java.util.Locale;
  */
 public class Timesheet {
 
+
     public static void main(String[] args) {
 
         Locale.setDefault(Locale.FRANCE);
@@ -18,7 +19,7 @@ public class Timesheet {
 
                 JFrame frame = new SimpleCalendarFrame();
                 frame.setTitle("Calendar");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
 

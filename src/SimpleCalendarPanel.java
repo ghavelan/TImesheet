@@ -24,7 +24,7 @@ public class SimpleCalendarPanel extends JPanel {
 
         //Month and calendar panels
         JPanel monthPanel = new JPanel();
-       
+
         //Buttons
         this.previous = new JButton(new ImageIcon("./images/previous.png"));
         this.next = new JButton(new ImageIcon("./images/next.png"));

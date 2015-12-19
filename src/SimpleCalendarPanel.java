@@ -16,9 +16,14 @@ public class SimpleCalendarPanel extends JPanel {
         //Set the layout manager
         this.setLayout(new BorderLayout());
 
-        //Model and renderer
+        //Model
         SimpleCalendarModel model = new SimpleCalendarModel();
         JTable calendar = new JTable(model);
+        //Selection of only one cell
+        calendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        calendar.setRowSelectionAllowed(true);
+        calendar.setColumnSelectionAllowed(true);
+        //Renderer
         calendar.setDefaultRenderer(Object.class, new SimpleCalendarRender());
         calendar.getTableHeader().setReorderingAllowed(false);
 

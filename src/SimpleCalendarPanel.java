@@ -8,11 +8,11 @@ import java.awt.event.ActionListener;
  *
  */
 public class SimpleCalendarPanel extends JPanel {
-    
+
     private JLabel month;
     private SimpleCalendarModel model;
 
-    public SimpleCalendarPanel(){
+    public SimpleCalendarPanel() {
 
         //Set the layout manager
         this.setLayout(new BorderLayout());
@@ -48,15 +48,14 @@ public class SimpleCalendarPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int m = model.getMonth();
                 int y = model.getYear();
-                if(m == 11){
+                if (m == 11) {
                     m = 0;
-                    y +=1;
-                }
-                else{
+                    y += 1;
+                } else {
                     m++;
                 }
                 model.update(m, y);
-                month.setText(model.DisplayMonth()+" "+model.getYear());
+                month.setText(model.DisplayMonth() + " " + model.getYear());
                 //Refresh model
                 model.fireTableDataChanged();
 
@@ -68,22 +67,21 @@ public class SimpleCalendarPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int m = model.getMonth();
                 int y = model.getYear();
-                if(m == 0){
+                if (m == 0) {
                     m = 11;
                     y -= 1;
-                }
-                else{
+                } else {
                     m--;
                 }
                 model.update(m, y);
-                month.setText(model.DisplayMonth()+" "+model.getYear());
+                month.setText(model.DisplayMonth() + " " + model.getYear());
                 //Refresh model
                 model.fireTableDataChanged();
             }
         });
 
         //Label
-        this.month = new JLabel(model.DisplayMonth()+" "+model.getYear());
+        this.month = new JLabel(model.DisplayMonth() + " " + model.getYear());
 
         //Adding panels to this
         monthPanel.add(previous);

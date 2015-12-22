@@ -12,13 +12,13 @@ public class SimpleCalendarModel extends AbstractTableModel {
 
     //Days
     final String[] columnNames = {"L", "M", "M", "J", "V", "S", "D"};
+    final int MAX_ROWS = 7;
     //Calendar Object
     private GregorianCalendar gCal;
     //Number of rows needed (dynamically estimated, depending on month)
     private int nbRows;
     //To store the days
     private Day[][] data;
-    final int MAX_ROWS = 7;
     //Current day
     private int today;
     //Current month (0 : january to 11 : december)
@@ -37,7 +37,7 @@ public class SimpleCalendarModel extends AbstractTableModel {
 
     }
 
-    public void update(int month, int year){
+    public void update(int month, int year) {
 
         // set gCal to the right month
         gCal.set(Calendar.MONTH, month);
@@ -66,7 +66,8 @@ public class SimpleCalendarModel extends AbstractTableModel {
             day = new Day(gCal.get(Calendar.DAY_OF_MONTH), Color.BLACK);
             if (gCal.get(Calendar.MONTH) != month) day.setColor(Color.lightGray);
             //Store the current day in order to highlight it
-            if (day.getDay() == today && gCal.get(Calendar.MONTH) == cMonth && gCal.get(Calendar.YEAR) == cYear) day.setColor(Color.red);
+            if (day.getDay() == today && gCal.get(Calendar.MONTH) == cMonth && gCal.get(Calendar.YEAR) == cYear)
+                day.setColor(Color.red);
 
             data[nbRows - 1][col++] = day;
             // advance d to the next day
@@ -122,12 +123,14 @@ public class SimpleCalendarModel extends AbstractTableModel {
         return gCal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.FRANCE);
 
     }
+
     //To get current month
     public int getMonth() {
 
         return gCal.get(Calendar.MONTH);
 
     }
+
     //To get current year
     public int getYear() {
 

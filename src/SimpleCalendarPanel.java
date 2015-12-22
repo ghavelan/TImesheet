@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by ghavelan on 8/12/15.
@@ -41,8 +43,23 @@ public class SimpleCalendarPanel extends JPanel {
         this.previous.setContentAreaFilled(false);
         this.next.setContentAreaFilled(false);
 
+        //Listeners
+        this.next.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Click!");
+            }
+        });
+
+        this.previous.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Click!");
+            }
+        });
+
         //Label
-        this.month = new JLabel(model.getMonth());
+        this.month = new JLabel(model.getMonth()+" "+model.getYear());
 
         //Adding panels to this
         monthPanel.add(this.previous);

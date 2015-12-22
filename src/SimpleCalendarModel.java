@@ -18,16 +18,27 @@ public class SimpleCalendarModel extends AbstractTableModel {
     private int nbRows;
     //To store the days
     private Day[][] data;
+    final int MAX_ROWS = 7;
 
     public SimpleCalendarModel() {
 
-        final int MAX_ROWS = 7;
         // construct gCal as current date
         gCal = new GregorianCalendar();
+        update(gCal.get(Calendar.MONTH));
+
+    }
+
+    public void update(int month){
+
         //Current day
         int today = gCal.get(Calendar.DAY_OF_MONTH);
+
+        // set gCal to the right month
+        gCal.set(Calendar.MONTH, month);
+        // set gCal to first day (1) of the month
+        gCal.set(Calendar.DAY_OF_MONTH, 1);
         //Current month (0 : january to 11 : december)
-        int month = gCal.get(Calendar.MONTH);
+        int cMonth = gCal.get(Calendar.MONTH);
         nbRows = 1;
         int col = 0;
         data = new Day[MAX_ROWS][columnNames.length];
@@ -44,7 +55,7 @@ public class SimpleCalendarModel extends AbstractTableModel {
         do {
 
             day = new Day(gCal.get(Calendar.DAY_OF_MONTH), Color.BLACK);
-            if (gCal.get(Calendar.MONTH) != month) day.setColor(Color.lightGray);
+            if (gCal.get(Calendar.MONTH) != cMonth) day.setColor(Color.lightGray);
             //Store the current day in order to highlight it
             if (day.getDay() == today) day.setColor(Color.red);
 
@@ -58,14 +69,14 @@ public class SimpleCalendarModel extends AbstractTableModel {
                 col = 0;
             }
 
-        } while (gCal.get(Calendar.MONTH) == month || col < columnNames.length - 1);
+        } while (gCal.get(Calendar.MONTH) == cMonth || col < columnNames.length - 1);
         //Fill remaining cells (it means the beginning of next month)
         if (col < columnNames.length) {
             day = new Day(gCal.get(Calendar.DAY_OF_MONTH), Color.lightGray);
             data[nbRows - 1][col] = day;
         }
         //If different, it means next month -> return to current month
-        if (gCal.get(Calendar.MONTH) != month) {
+        if (gCal.get(Calendar.MONTH) != cMonth) {
             gCal.add(Calendar.MONTH, -1);
         }
 
@@ -100,6 +111,12 @@ public class SimpleCalendarModel extends AbstractTableModel {
     public String getMonth() {
 
         return gCal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.FRANCE);
+
+    }
+    //To get current year
+    public int getYear() {
+        int year = gCal.get(Calendar.YEAR);
+        return year;
 
     }
 

@@ -8,10 +8,9 @@ import java.awt.event.ActionListener;
  *
  */
 public class SimpleCalendarPanel extends JPanel {
-
-    private JButton next;
-    private JButton previous;
+    
     private JLabel month;
+    private SimpleCalendarModel model;
 
     public SimpleCalendarPanel(){
 
@@ -19,8 +18,8 @@ public class SimpleCalendarPanel extends JPanel {
         this.setLayout(new BorderLayout());
 
         //Model
-        SimpleCalendarModel model = new SimpleCalendarModel();
-        JTable calendar = new JTable(model);
+        this.model = new SimpleCalendarModel();
+        JTable calendar = new JTable(this.model);
         //Selection of only one cell
         calendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         calendar.setRowSelectionAllowed(true);
@@ -36,35 +35,60 @@ public class SimpleCalendarPanel extends JPanel {
         JPanel monthPanel = new JPanel();
 
         //Buttons
-        this.previous = new JButton(new ImageIcon("./images/previous.png"));
-        this.next = new JButton(new ImageIcon("./images/next.png"));
-        this.previous.setBorder(BorderFactory.createEmptyBorder());
-        this.next.setBorder(BorderFactory.createEmptyBorder());
-        this.previous.setContentAreaFilled(false);
-        this.next.setContentAreaFilled(false);
+        JButton previous = new JButton(new ImageIcon("./images/previous.png"));
+        JButton next = new JButton(new ImageIcon("./images/next.png"));
+        previous.setBorder(BorderFactory.createEmptyBorder());
+        next.setBorder(BorderFactory.createEmptyBorder());
+        previous.setContentAreaFilled(false);
+        next.setContentAreaFilled(false);
 
         //Listeners
-        this.next.addActionListener(new ActionListener() {
+        next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Click!");
+                int m = model.getMonth();
+                int y = model.getYear();
+                if(m == 11){
+                    m = 0;
+                    y +=1;
+                }
+                else{
+                    m++;
+                }
+                model.update(m, y);
+                month.setText(model.DisplayMonth()+" "+model.getYear());
+                //Refresh model
+                model.fireTableDataChanged();
+
             }
         });
 
-        this.previous.addActionListener(new ActionListener() {
+        previous.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Click!");
+                int m = model.getMonth();
+                int y = model.getYear();
+                if(m == 0){
+                    m = 11;
+                    y -= 1;
+                }
+                else{
+                    m--;
+                }
+                model.update(m, y);
+                month.setText(model.DisplayMonth()+" "+model.getYear());
+                //Refresh model
+                model.fireTableDataChanged();
             }
         });
 
         //Label
-        this.month = new JLabel(model.getMonth()+" "+model.getYear());
+        this.month = new JLabel(model.DisplayMonth()+" "+model.getYear());
 
         //Adding panels to this
-        monthPanel.add(this.previous);
+        monthPanel.add(previous);
         monthPanel.add(this.month);
-        monthPanel.add(this.next);
+        monthPanel.add(next);
         add(monthPanel, BorderLayout.NORTH);
         add(new JScrollPane(calendar), BorderLayout.CENTER);
     }

@@ -12,6 +12,7 @@ public class SimpleCalendarModel extends AbstractTableModel {
 
     //Days
     final String[] columnNames = {"L", "M", "M", "J", "V", "S", "D"};
+    //Calendar Object
     private GregorianCalendar gCal;
     //Number of rows needed (dynamically estimated, depending on month)
     private int nbRows;

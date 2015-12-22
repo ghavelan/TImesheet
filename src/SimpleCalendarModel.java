@@ -73,7 +73,7 @@ public class SimpleCalendarModel extends AbstractTableModel {
             // advance d to the next day
             gCal.add(Calendar.DAY_OF_MONTH, 1);
 
-            if (gCal.get(Calendar.DAY_OF_WEEK) == GregorianCalendar.MONDAY) {
+            if (gCal.get(Calendar.DAY_OF_WEEK) == GregorianCalendar.MONDAY && gCal.get(Calendar.MONTH) == month) {
 
                 ++nbRows;
                 col = 0;

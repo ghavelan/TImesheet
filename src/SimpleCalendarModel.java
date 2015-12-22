@@ -115,8 +115,8 @@ public class SimpleCalendarModel extends AbstractTableModel {
     }
     //To get current year
     public int getYear() {
-        int year = gCal.get(Calendar.YEAR);
-        return year;
+       
+        return gCal.get(Calendar.YEAR);
 
     }
 

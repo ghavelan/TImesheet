@@ -6,9 +6,9 @@ import java.awt.*;
  * Created by ghavelan on 7/12/15.
  * To render the table
  */
-public class SimpleCalendarRender extends DefaultTableCellRenderer {
+public class SimpleCalendarCellRender extends DefaultTableCellRenderer {
 
-    public SimpleCalendarRender() {
+    public SimpleCalendarCellRender() {
 
         setHorizontalAlignment(SwingConstants.CENTER);
     }

@@ -26,6 +26,7 @@ public class SimpleCalendarPanel extends JPanel {
         calendar.setColumnSelectionAllowed(true);
         //Renderer
         calendar.setDefaultRenderer(Object.class, new SimpleCalendarCellRender());
+        calendar.getTableHeader().setDefaultRenderer(new SimpleCalendarHeaderRenderer());
         //Avoid reordering of columns
         calendar.getTableHeader().setReorderingAllowed(false);
         //Avoid resizing of column width

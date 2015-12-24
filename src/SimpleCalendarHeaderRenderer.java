@@ -14,7 +14,7 @@ public class SimpleCalendarHeaderRenderer extends JLabel implements TableCellRen
         setOpaque(true);
         setForeground(Color.WHITE);
         setBackground(Color.BLUE);
-        setBorder(BorderFactory.createEtchedBorder());
+        setBorder(BorderFactory.createRaisedBevelBorder());
         setHorizontalAlignment(SwingConstants.CENTER);
     }
 

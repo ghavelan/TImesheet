@@ -18,8 +18,12 @@ public class SimpleCalendarCellRender extends DefaultTableCellRenderer {
 
         Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         cell.setFont(new Font("Helvetica Bold", Font.BOLD, 12));
-        Day d = (Day) value;
-        cell.setForeground(d.getColor());
+        if (value != null && value instanceof Day) {
+
+            Day d = (Day) value;
+            cell.setForeground(d.getColor());
+        }
+
 
         return cell;
     }

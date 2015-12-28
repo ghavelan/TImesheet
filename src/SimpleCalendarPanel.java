@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,13 +21,24 @@ public class SimpleCalendarPanel extends JPanel {
         //Model
         this.model = new SimpleCalendarModel();
         JTable calendar = new JTable(this.model);
+
+        //Adding a week column at index 0
+        TableColumn column = new TableColumn();
+        column.setHeaderValue(" ");
+        calendar.addColumn(column);
+        column.setCellRenderer(new SimpleCalendarRowHeaderRenderer());
+        calendar.moveColumn(7, 0);
+
         //Selection of only one cell
         calendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         calendar.setRowSelectionAllowed(true);
         calendar.setColumnSelectionAllowed(true);
+
         //Renderer
         calendar.setDefaultRenderer(Object.class, new SimpleCalendarCellRender());
-        calendar.getTableHeader().setDefaultRenderer(new SimpleCalendarHeaderRenderer());
+        calendar.getColumnModel().getColumn(0).setHeaderRenderer(new SimpleCalendarCellRender());
+        calendar.getTableHeader().setDefaultRenderer(new SimpleCalendarColumnHeaderRenderer());
+
         //Avoid reordering of columns
         calendar.getTableHeader().setReorderingAllowed(false);
         //Avoid resizing of column width

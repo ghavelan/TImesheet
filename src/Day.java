@@ -8,9 +8,11 @@ public class Day {
 
     private Color color;
     private int day;
+    private int week;
 
-    public Day(int d, Color c) {
+    public Day(int d, int w, Color c) {
         day = d;
+        week = w;
         color = c;
     }
 
@@ -25,5 +27,7 @@ public class Day {
     public int getDay() {
         return day;
     }
+
+    public int getWeek(){ return week;}
 
 }

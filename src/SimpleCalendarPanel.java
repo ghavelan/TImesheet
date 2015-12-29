@@ -125,7 +125,7 @@ public class SimpleCalendarPanel extends JPanel {
         return model.getCurrentDay();
     }
     public int getCurrentMonth(){
-        return model.getCurrentMonth();
+        return model.getCurrentMonth()+1;
     }
     public int getCurrentYear(){
         return model.getCurrentYear();

@@ -80,7 +80,7 @@ public class SimpleCalendarPanel extends JPanel {
                 month.setText(model.DisplayMonth() + " " + model.getYear());
                 //Refresh model
                 model.fireTableDataChanged();
-
+                System.out.println(getCurrentDay()+"/"+getCurrentMonth()+"/"+getCurrentYear());
 
             }
         });
@@ -119,6 +119,16 @@ public class SimpleCalendarPanel extends JPanel {
         calendar.setPreferredScrollableViewportSize(calendar.getPreferredSize());
         scrollCalendar.setViewportView(calendar);
         add(scrollCalendar, BorderLayout.CENTER);
+    }
+
+    public int getCurrentDay(){
+        return model.getCurrentDay();
+    }
+    public int getCurrentMonth(){
+        return model.getCurrentMonth();
+    }
+    public int getCurrentYear(){
+        return model.getCurrentYear();
     }
 
 }

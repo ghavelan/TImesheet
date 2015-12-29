@@ -138,4 +138,17 @@ public class SimpleCalendarModel extends AbstractTableModel {
 
     }
 
+    public int getCurrentDay(){
+
+        return today;
+    }
+    public int getCurrentMonth(){
+
+        return cMonth;
+    }
+    public int getCurrentYear(){
+
+        return cYear;
+    }
+
 }

@@ -3,6 +3,8 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by ghavelan on 8/12/15.
@@ -17,6 +19,17 @@ public class SimpleCalendarPanel extends JPanel {
     public SimpleCalendarPanel() {
 
         createPanel();
+        calendar.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    JTable target = (JTable)e.getSource();
+                    int row = target.getSelectedRow();
+                    int column = target.getSelectedColumn();
+                    Day selected = (Day) calendar.getValueAt(row, column);
+                    System.out.println(selected.getDay());
+                }
+            }
+        });
 
     }
 
@@ -80,7 +93,6 @@ public class SimpleCalendarPanel extends JPanel {
                 month.setText(model.DisplayMonth() + " " + model.getYear());
                 //Refresh model
                 model.fireTableDataChanged();
-                System.out.println(getCurrentDay()+"/"+getCurrentMonth()+"/"+getCurrentYear());
 
             }
         });
@@ -100,7 +112,6 @@ public class SimpleCalendarPanel extends JPanel {
                 month.setText(model.DisplayMonth() + " " + model.getYear());
                 //Refresh model
                 model.fireTableDataChanged();
-
 
             }
         });

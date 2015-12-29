@@ -12,20 +12,28 @@ public class SimpleCalendarPanel extends JPanel {
 
     private JLabel month;
     private SimpleCalendarModel model;
+    private JTable calendar;
 
     public SimpleCalendarPanel() {
+
+        createPanel();
+
+    }
+
+    private void createPanel(){
 
         //Set the layout manager
         this.setLayout(new BorderLayout());
 
         //Model
         this.model = new SimpleCalendarModel();
-        JTable calendar = new JTable(this.model);
+        calendar = new JTable(this.model);
 
         //Adding a week column at index 0
         TableColumn column = new TableColumn();
         column.setHeaderValue(" ");
         calendar.addColumn(column);
+        //Renderer for the header (rows)
         column.setCellRenderer(new SimpleCalendarRowHeaderRenderer());
         calendar.moveColumn(7, 0);
 
@@ -34,8 +42,9 @@ public class SimpleCalendarPanel extends JPanel {
         calendar.setRowSelectionAllowed(true);
         calendar.setColumnSelectionAllowed(true);
 
-        //Renderer
+        //Renderer for the cells
         calendar.setDefaultRenderer(Object.class, new SimpleCalendarCellRender());
+        //Renderer for the header (columns)
         calendar.getColumnModel().getColumn(0).setHeaderRenderer(new SimpleCalendarCellRender());
         calendar.getTableHeader().setDefaultRenderer(new SimpleCalendarColumnHeaderRenderer());
 
@@ -72,6 +81,7 @@ public class SimpleCalendarPanel extends JPanel {
                 //Refresh model
                 model.fireTableDataChanged();
 
+
             }
         });
 
@@ -90,6 +100,8 @@ public class SimpleCalendarPanel extends JPanel {
                 month.setText(model.DisplayMonth() + " " + model.getYear());
                 //Refresh model
                 model.fireTableDataChanged();
+
+
             }
         });
 
@@ -101,7 +113,12 @@ public class SimpleCalendarPanel extends JPanel {
         monthPanel.add(this.month);
         monthPanel.add(next);
         add(monthPanel, BorderLayout.NORTH);
-        add(new JScrollPane(calendar), BorderLayout.CENTER);
+
+        //Adding a scroll pane to the same height as the JTable
+        JScrollPane scrollCalendar = new JScrollPane();
+        calendar.setPreferredScrollableViewportSize(calendar.getPreferredSize());
+        scrollCalendar.setViewportView(calendar);
+        add(scrollCalendar, BorderLayout.CENTER);
     }
 
 }

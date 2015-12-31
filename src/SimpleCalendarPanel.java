@@ -127,6 +127,8 @@ public class SimpleCalendarPanel extends JPanel {
 
         //Adding a scroll pane to the same height as the JTable
         JScrollPane scrollCalendar = new JScrollPane();
+        //To get rid of the border
+        scrollCalendar.setBorder(BorderFactory.createEmptyBorder());
         calendar.setPreferredScrollableViewportSize(calendar.getPreferredSize());
         scrollCalendar.setViewportView(calendar);
         add(scrollCalendar, BorderLayout.CENTER);

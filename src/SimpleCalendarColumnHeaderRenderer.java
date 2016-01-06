@@ -18,7 +18,7 @@ public class SimpleCalendarColumnHeaderRenderer extends DefaultTableCellRenderer
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         if (value != null && value instanceof String && !value.equals(" ")) {
             setForeground(Color.WHITE);
-            setBackground(Color.BLUE);
+            setBackground(new Color(107, 161, 253));
             setFont(new Font("Helvetica", Font.BOLD, 13));
             setBorder(BorderFactory.createRaisedBevelBorder());
 

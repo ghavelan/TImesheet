@@ -11,7 +11,7 @@ public class SimpleCalendarRowHeaderRenderer extends DefaultTableCellRenderer {
     public SimpleCalendarRowHeaderRenderer() {
 
         setForeground(Color.BLACK);
-        setBackground(Color.yellow);
+        setBackground(new Color(249, 234, 137));
         setFont(new Font("Helvetica", Font.BOLD, 13));
         setBorder(BorderFactory.createRaisedBevelBorder());
         setHorizontalAlignment(JLabel.CENTER);

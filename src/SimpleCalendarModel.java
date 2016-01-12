@@ -21,6 +21,8 @@ public class SimpleCalendarModel extends AbstractTableModel {
     private Day[][] data;
     //Current day
     private int today;
+    //Current week
+    private int cWeek;
     //Current month (0 : january to 11 : december)
     private int cMonth;
     //Current year
@@ -31,6 +33,7 @@ public class SimpleCalendarModel extends AbstractTableModel {
         // construct gCal as current date
         gCal = new GregorianCalendar();
         today = gCal.get(Calendar.DAY_OF_MONTH);
+        cWeek = gCal.get(Calendar.WEEK_OF_YEAR);
         cMonth = gCal.get(Calendar.MONTH);
         cYear = gCal.get(Calendar.YEAR);
         update(gCal.get(Calendar.MONTH), gCal.get(Calendar.YEAR));
@@ -141,6 +144,9 @@ public class SimpleCalendarModel extends AbstractTableModel {
     public int getCurrentDay(){
 
         return today;
+    }
+    public int getCurrentWeek(){
+        return cWeek;
     }
     public int getCurrentMonth(){
 
